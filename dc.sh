@@ -1,0 +1,1 @@
+cd docker/dev/ && docker compose up -d
