@@ -1,4 +1,4 @@
-import { Resolver, Query } from 'type-graphql'
+import { Resolver, Query, Arg } from 'type-graphql'
 import { IUser, UserRole } from '../entities/types/userType'
 import { User } from '../entities/user'
 
@@ -19,8 +19,13 @@ export class UserResolver {
     },
   ];
 
-  @Query(returns => [User])
+  @Query(() => [User])
   async users() {
     return await this.usersCollection;
+  }
+
+  @Query(() => User)
+  async user(@Arg('id') id: number) {
+    return await this.usersCollection.find(user => user.id === id);
   }
 }
