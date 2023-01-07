@@ -24,8 +24,10 @@ services:
     image: mysql:latest
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./mysql/config:/etc/mysql/conf.d/my.cnf
+      # - ./mysql/config:/etc/mysql/conf.d/my.cnf
     command: mysqld --collation-server=utf8mb4_bin
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
     ports:
       - 3306:3306
 volumes:
