@@ -22,14 +22,14 @@ import { DataSource } from "typeorm";
 //   },
 // ]
 
-export const connectionSource = new DataSource({
+export const AppDataSource = new DataSource({
   type: 'mysql',
   host: 'localhost',
   port: 3306,
   username: 'root',
   password: 'root',
   database: 'example',
-  dropSchema: true, // スキーマ削除(開発用)
+  dropSchema: false, // スキーマ削除(開発用)
   logging: false,
   // namingStrategy: new TypeOrmNamingStrategy(),
   synchronize: false,
@@ -37,3 +37,9 @@ export const connectionSource = new DataSource({
   migrations: ['migrations/*{.ts,.js}'],
   subscribers: ['subscriber/*{.ts,.js}'],
 });
+
+// 接続の確立
+AppDataSource.initialize()
+  .then(() => {
+  })
+  .catch((error) => console.log(error))
